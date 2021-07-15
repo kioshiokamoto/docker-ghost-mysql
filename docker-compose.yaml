@@ -15,7 +15,7 @@ services:
       mail__transport: SMTP
       mail__service: Gmail
       mail__options__host: smtp.gmail.com
-      mail__options__port: 465
+      mail__options__port: 25
       mail__options__auth__user: $USER
       mail__options__auth__pass: $PASS
       mail__from: $USER <$USER>
