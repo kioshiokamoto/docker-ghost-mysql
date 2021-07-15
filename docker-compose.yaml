@@ -1,6 +1,6 @@
 services:
   ghost:
-    image: kioshiokamoto/ghost:theme-3
+    image: $GHOST_IMAGE
     restart: always
     ports:
       - "2368:2368"
@@ -9,14 +9,22 @@ services:
       database__client: mysql
       database__connection__host: db
       database__connection__user: root
-      database__connection__password: example
+      database__connection__password: $DB_PASS
       database__connection__database: ghost
 
+      mail__transport: SMTP
+      mail__service: Gmail
+      mail__options__host: smtp.gmail.com
+      mail__options__port: 465
+      mail__options__auth__user: $USER
+      mail__options__auth__pass: $PASS
+      mail__from: $USER <$USER>
+
       #Enlace de ghost
-      url: http://20.88.211.156:2368
+      url: $URL
 
   db:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: $DB_PASS
